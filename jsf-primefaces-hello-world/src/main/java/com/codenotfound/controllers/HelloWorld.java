@@ -1,13 +1,26 @@
 package com.codenotfound.controllers;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
+import javax.xml.ws.Response;
 
 import com.codenotfound.model.Student;
 import com.codenotfound.services.StudentService;
+
+import org.springframework.web.client.RestTemplate;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.web.client.RestTemplate;
 
 @Named
 public class HelloWorld {
@@ -40,28 +53,10 @@ public class HelloWorld {
 
   public String showGreeting() {
     Student s = new Student();
-    s.setNombre(firstName.toUpperCase() + " " + lastName.toUpperCase());
+    s.setNombre(firstName + " " + lastName);
     this.listaStudent.add(s);
     return "Hello " + firstName + " " + lastName + "!";
   }
-
-    
-
-
-
-    /**
-     * @return StudentService return the studentService
-     */
-    public StudentService getStudentService() {
-        return studentService;
-    }
-
-    /**
-     * @param studentService the studentService to set
-     */
-    public void setStudentService(StudentService studentService) {
-        this.studentService = studentService;
-    }
 
     /**
      * @return List<Student> return the listaStudent
@@ -70,11 +65,6 @@ public class HelloWorld {
         return listaStudent;
     }
 
-    /**
-     * @param listaStudent the listaStudent to set
-     */
-    public void setListaStudent(List<Student> listaStudent) {
-        this.listaStudent = listaStudent;
-    }
+  
 
 }
